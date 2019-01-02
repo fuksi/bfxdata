@@ -135,3 +135,6 @@ Temporary Items
 .pytest_cache/
 
 bitfinex.sqlite3
+*.stackdump
+
+.vscode/

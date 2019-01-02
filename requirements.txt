@@ -1,0 +1,7 @@
+requests
+pendulum==1.5.0
+click
+simplejson
+websockets
+psycopg2
+pyodbc
