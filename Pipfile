@@ -1,22 +1,22 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 requests = "*"
 pendulum = "*"
 click = "*"
 simplejson = "*"
 websockets = "*"
-
+"psycopg2" = "*"
+prompt-toolkit = "==2.0.4"
+pytest = "*"
+"autopep8" = "*"
 
 [dev-packages]
-
 ipdb = "*"
 pytest = "*"
 mock = "*"
 responses = "*"
+pylint = "*"

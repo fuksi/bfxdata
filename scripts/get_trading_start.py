@@ -35,7 +35,7 @@ for symbol in symbols:
             # save this data and make another request
             # with reduced end_ts
             previous_data = data
-            end_date = end_date - pendulum.Interval(days=limit)
+            end_date = end_date - pendulum.Duration(days=limit)
             print(f'hit limit, new end date is {end_date}')
             print('sleep...')
             sleep(5)

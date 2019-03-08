@@ -38,7 +38,7 @@ def test_date_range():
     """
     start_date = pendulum.create(2015, 5, 12)
     end_date = pendulum.create(2015, 5, 13, 15, 0)
-    d = pendulum.Interval(minutes=1000)
+    d = pendulum.Duration(minutes=1000)
 
     ranges = [(d1, d2) for d1, d2 in date_range(start_date, end_date, d)]
 
