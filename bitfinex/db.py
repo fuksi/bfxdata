@@ -26,7 +26,10 @@ class SqliteDatabase:
                         low decimal(18,10) NOT NULL,
                         volume decimal(18,10) NOT NULL,
                         PRIMARY KEY (symbol, time)
-                    )
+                    );
+
+                    create index if not exists candle_symbol_idx on candles (symbol);
+                    create index if not exists candle_time_idx on candles (time);
                 """)
 
                 cur.execute("""

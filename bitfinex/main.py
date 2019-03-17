@@ -79,8 +79,7 @@ def get_funding_trades(symbol, start_date, limit=1000):
 @click.option('--pgpw')
 def main(debug, usemssql, includecandles, includefundings, includetradings, pghost, pgdb, pguser, pgpw):
 
-    debug, includetradings = True, True
-    usemssql, includecandles, includefundings = False, False, False
+    usemssql = False
 
     if debug:
         logger.setLevel(logging.DEBUG)
