@@ -8,7 +8,7 @@ class SqliteDatabase:
         self.create()
 
     def connect(self):
-        return psycopg2.connect(host="localhost",database="postgres", user="postgres", password="yaha")
+        return psycopg2.connect(host="",database="postgres", user="", password="")
 
     def create(self):
         with self.connect() as con:
@@ -41,7 +41,7 @@ class SqliteDatabase:
                 cur.execute("""
                     create table if not exists tradings (
                         symbol varchar(10) NOT NULL,
-                        id int NOT NULL,
+                        id int PRIMARY KEY NOT NULL,
                         time timestamptz NOT NULL,
                         amount decimal(18,10) NOT NULL,
                         price decimal(18,10) NOT NULL

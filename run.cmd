@@ -6,4 +6,4 @@ IF EXIST "%DEPLOYMENT_TARGET%\requirements.txt" (
 )
 
 :: Then run
-D:\home\python364x64\python.exe bitfinex/main.py --usemssql --includefundings
+D:\home\python364x64\python.exe bitfinex/main.py --includecandles --debug

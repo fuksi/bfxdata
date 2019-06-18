@@ -19,7 +19,7 @@ API_URL = 'https://api.bitfinex.com/v2'
 
 
 def symbol_start_date(symbol):
-    return pendulum.parse('2017-01-01T00:00:00Z')
+    return pendulum.parse('2018-01-01T00:00:00Z')
     
 def get_symbols():
     with open('symbols.json') as f:
@@ -75,7 +75,9 @@ def get_funding_trades(symbol, start_date, limit=1000):
 @click.option('--includefundings', is_flag=True, help='Get fundings')
 @click.option('--includetradings', is_flag=True, help='Get tradings')
 def main(debug, usemssql, includecandles, includefundings, includetradings):
-
+    # debug, usemssql, includecandles, includefundings = True, False, False, False
+    # includetradings = True
+    
     if debug:
         logger.setLevel(logging.DEBUG)
 
@@ -87,7 +89,7 @@ def main(debug, usemssql, includecandles, includefundings, includetradings):
         print('Using postgres adapter')
 
     end_date = pendulum.now()
-    step = pendulum.Interval(minutes=1000)
+    step = pendulum.Duration(minutes=1000)
 
     symbols = get_symbols()
     logging.info(f'Found {len(symbols)} trading symbols')
@@ -177,7 +179,8 @@ def main(debug, usemssql, includecandles, includefundings, includetradings):
                         # we'll stuck in infinite loop since the start_date will be the same over & over again
                         # not much we can't do, but to continue with the next second
                         # since API limit is 1000 per request for a particular timestamp
-                        if len(trades) > 1 and trades[-1][2] == trades[0][2]:
+                        got_data_period_in_seconds = start_date.diff(pendulum.from_timestamp(trades[0][2]/1000)).in_seconds() 
+                        if len(trades) > 1 and got_data_period_in_seconds < 1:
                             start_date = start_date.add(seconds=1)
                     else:
                         start_date = start_date.add(seconds=10)
